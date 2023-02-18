@@ -26,12 +26,13 @@ class DB:
         self.cur.execute(sql)
         rows = self.cur.fetchall()
         userDict = []
+        print(rows)
         for user in rows:
             tempDict = {}
-            tempDict['email'] = user[1]
-            tempDict['fname'] = user[2]
-            tempDict['lname'] = user[3]
-            tempDict['phone'] = user[4]
+            tempDict['email'] = user[4]
+            tempDict['fname'] = user[0]
+            tempDict['lname'] = user[1]
+            tempDict['phone'] = user[3]
             tempDict['password'] = user[5]
             userDict.append(tempDict)
         return userDict
