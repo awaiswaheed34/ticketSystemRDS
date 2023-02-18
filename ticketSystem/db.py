@@ -43,13 +43,30 @@ class DB:
         rows = self.cur.fetchall()
         return json.dumps(rows)
     
-    def addBus(self , name , number , time , source , destination):
-        sql = "insert into bus (name , number , time , source , destination) values ('"+name+"' , '"+number+"' , '"+time+"' , '"+source+"' , '"+destination+"')"
+    def addBus(self , busName , busNumber , busTime , busSource , busDestination , busPrice , busCapacity , busDeparture , busArrival):
+        sql = "insert into Bus (busName , busNumber , busTime , busSource , busDestination , busPrice , busCapacity , busDeparture , busArrival) values ('"+busName+"' , '"+busNumber+"' , '"+busTime+"' , '"+busSource+"' , '"+busDestination+"' , '"+busPrice+"' , '"+busCapacity+"' , '"+busDeparture+"' , '"+busArrival+"')"
         try:
             self.cur.execute(sql)
             self.con.commit()
             return True
         except:
             return False
-        
-    
+    def showAllBuses(self):
+        sql = "select * from Bus"
+        self.cur.execute(sql)
+        rows = self.cur.fetchall()
+        busDict = []
+        print(rows)
+        for bus in rows:
+            tempDict = {}
+            tempDict['busName'] = bus[0]
+            tempDict['busNumber'] = bus[1]
+            tempDict['busTime'] = bus[2]
+            tempDict['busSource'] = bus[3]
+            tempDict['busDestination'] = bus[4]
+            tempDict['busPrice'] = bus[5]
+            tempDict['busCapacity'] = bus[6]
+            tempDict['busDeparture'] = bus[7]
+            tempDict['busArrival'] = bus[8]
+            busDict.append(tempDict)
+        return busDict

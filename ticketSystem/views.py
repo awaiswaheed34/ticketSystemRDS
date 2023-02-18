@@ -43,7 +43,17 @@ def addBus(request):
     if request.method=="POST":
         body = request.POST
         print(body)
-        db.addBus(body['name'] , body['number'] , body['time'] , body['source'] , body['destination'])
+        print("SSS")
+        print(db.addBus(body['busName'] , body['busNumber'] , body['busTime'] , body['busSource'] ,
+                   body['busDestination'] , body['busPrice'] , 
+                   body['busCapacity'] , body['busDeparture'] , 
+                   body['busArrival']))
         return render(request , 'showBuses.html' , context={'success':'Bus added successfully'})
     elif(request.method=="GET"):
         return render(request , 'addBus.html' , context={}) 
+    
+def showBuses(request):
+
+    rows = db.showAllBuses()
+    print(rows)
+    return render(request , 'showBuses.html' , context={'buses':rows})

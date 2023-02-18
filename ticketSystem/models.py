@@ -22,9 +22,9 @@ class Bus(models.Model):
     destination = models.CharField(max_length=20)
     price = models.IntegerField()
     capacity = models.IntegerField()
-    departureTime = models.TimeField()
-    arrivalTime = models.TimeField()
-    
+    departureTime = models.CharField(max_length=20)
+    arrivalTime = models.CharField(max_length=20)
+
 
 
 #bus has 40 seats and each seat has a seat_id and a seat_number and a seat_status (booked or not) create a table for seats
