@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Show all buses</title>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <th>Bus Name</th>
+            <th>Bus Number</th>
+            <th>Bus Type</th>
+            <th>Bus Capacity</th>
+            <th>Bus Price</th>
+            <th>Bus Source</th>
+            <th>Bus Destination</th>
+            <th>Bus Departure</th>
+            <th>Bus Arrival</th>
+            <th>Bus Date</th>
+        </tr>
+        {% for bus in buses %}
+        <tr>
+            {{bus}}
+            <td></td>
+            <td>{{bus.busName}}</td>
+            <td>{{bus.busNumber}}</td>
+            <td>{{bus.busType}}</td>
+            <td>{{bus.busCapacity}}</td>
+            <td>{{bus.busPrice}}</td>
+            <td>{{bus.busSource}}</td>
+            <td>{{bus.busDestination}}</td>
+            <td>{{bus.busDeparture}}</td>
+            <td>{{bus.busArrival}}</td>
+            <td>{{bus.busDate}}</td>
+    </table>
+</body>
