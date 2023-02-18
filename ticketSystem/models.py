@@ -2,11 +2,11 @@ from django.db import models
 
 # Create your models here.
 class User(models.Model):
-    fname = models.CharField(max_length=100)
-    lname = models.CharField(max_length=100)
     id = models.AutoField(primary_key=True)
-    phone = models.CharField(max_length=13)
     email = models.EmailField()
+    fname = models.CharField(max_length=100)
+    lname = models.CharField(max_length=100)  
+    phone = models.CharField(max_length=13)
     password = models.CharField(max_length=20)
     
     class Meta:

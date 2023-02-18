@@ -2,7 +2,7 @@ from django.shortcuts import render
 #import csrf_exempt 
 from django.views.decorators.csrf import csrf_exempt
 
-from django.http import HttpResponse , request  , response
+from django.http import HttpResponse, JsonResponse , request  , response
 
 #improt json
 import json
@@ -15,13 +15,15 @@ def index(request):
 
 @csrf_exempt
 def signup(request):
-    print(request.method)
+    print(request.body)
     if request.method=="POST":
-        body = json.loads(request.body.decode('utf-8'))
+        body = request.POST
+        print(body)
         if db.emailExists(body['email']):
             return render(request , 'signup.html' , context={'error':'Email already exists'})
         else:
-            return response()
+            db.addUser(body['email'] , body['fname'] , body['lname'] , body['phone'] , body['password'])
+            return render(request , 'showAll.html' , context={'success':'Account created successfully'})
           
     elif(request.method=="GET"):
        
@@ -29,3 +31,10 @@ def signup(request):
         return render(request , 'signup.html' , context={})  
     else:
         return render(request , 'templates/signup.html')
+
+def showAll(request):
+    rows = db.showAllUsers()
+    
+    #convert rows into json
+    print(rows)
+    return render(request , 'showAll.html' , context={'users':rows})
