@@ -42,5 +42,14 @@ class DB:
         self.cur.execute(sql)
         rows = self.cur.fetchall()
         return json.dumps(rows)
+    
+    def addBus(self , name , number , time , source , destination):
+        sql = "insert into bus (name , number , time , source , destination) values ('"+name+"' , '"+number+"' , '"+time+"' , '"+source+"' , '"+destination+"')"
+        try:
+            self.cur.execute(sql)
+            self.con.commit()
+            return True
+        except:
+            return False
         
     

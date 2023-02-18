@@ -38,3 +38,12 @@ def showAll(request):
     #convert rows into json
     print(rows)
     return render(request , 'showAll.html' , context={'users':rows})
+
+def addBus(request):
+    if request.method=="POST":
+        body = request.POST
+        print(body)
+        db.addBus(body['name'] , body['number'] , body['time'] , body['source'] , body['destination'])
+        return render(request , 'showAll.html' , context={'success':'Bus added successfully'})
+    elif(request.method=="GET"):
+        return render(request , 'addBus.html' , context={}) 
